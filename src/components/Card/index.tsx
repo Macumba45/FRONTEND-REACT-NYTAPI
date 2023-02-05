@@ -5,7 +5,7 @@ import { Title } from "./Title";
 import { Button } from "../Button";
 import { Props } from './type';
 
-export const Card: FC<Props> = ({ list_name, oldest_published_date, newest_published_date, updated }) => {
+export const Card: FC<Props> = ({ list_name, oldest_published_date, newest_published_date, updated, listName, onClick }) => {
     return (
         <div className="card">
             <Title
@@ -16,9 +16,7 @@ export const Card: FC<Props> = ({ list_name, oldest_published_date, newest_publi
                 newest_published_date={newest_published_date}
                 updated={updated}
             />
-            <Button
-                a="Read more"
-            />
+            <Button onClick={() => onClick(listName)} />
         </div>
     );
 };

@@ -3,8 +3,8 @@ import './button.css'
 import { Props } from './type'
 
 
-export const Button: FC<Props> = ({ }) => {
+export const Button: FC<Props> = ({ onClick }) => {
     return (
-        <a className="readMore" href="">Read more</a>
+        <button className="buttonDetails" onClick={onClick}>Read more</button>
     );
 };

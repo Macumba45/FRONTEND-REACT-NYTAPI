@@ -21,16 +21,16 @@ export const setDataBooks = (books: Array<BookLists>) => {
 }
 
 
-export const getSaveDataDetails = () => {
+export const getSaveDataDetails = (listName: string): any => {
 
-    const saveDataBooksDetails = window.localStorage.getItem(localStorageKeyDetails);
+    const saveDataBooksDetails = window.localStorage.getItem(listName);
     return saveDataBooksDetails ? JSON.parse(saveDataBooksDetails) : [];
 
 }
 
-export const setSaveDataDetails = (bookDetails: Array<Record<string, unknown>>) => {
+export const setSaveDataDetails = (listName: string, results: Array<BookDetails>) => {
 
-    window.localStorage.setItem(localStorageKeyDetails, JSON.stringify(bookDetails))
+    window.localStorage.setItem(listName, JSON.stringify(results))
 
 
 }

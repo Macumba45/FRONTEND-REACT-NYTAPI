@@ -4,3 +4,18 @@
   margin-top: 30px;
   justify-content: center;
 }
+
+body {
+  background-color: rgb(192, 192, 192);
+
+}
+
+.headerCardDetails {
+  background-color: black;
+  height: 19vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}

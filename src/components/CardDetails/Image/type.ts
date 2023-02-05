@@ -1,5 +1,5 @@
 export type Props = {
 
-    onClick: () => void;
+    book_image: string
 
 }

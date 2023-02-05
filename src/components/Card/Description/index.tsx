@@ -4,10 +4,11 @@ import { Props } from './types'
 
 export const Description: FC<Props> = ({ oldest_published_date, newest_published_date, updated }) => {
     return (
+
         <div>
-            <p id="date">{oldest_published_date}</p>
-            <p id="dateUpdate">{newest_published_date}</p>
-            <p id="dateUpdateRange">{updated}</p>
+            <p className="date">Oldest:{oldest_published_date}</p>
+            <p className="dateUpdate">Newest:{newest_published_date}</p>
+            <p className="dateUpdateRange">Updated:{updated}</p>
         </div>
     );
 };

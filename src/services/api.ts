@@ -1,4 +1,3 @@
-import { localStorageKeyBooks, localStorageListName, localStorageKeyDetails } from './storage/storage';
 import { getSaveDataBooks, setDataBooks, getSaveDataDetails, setSaveDataDetails } from './storage/storage'
 
 export type BookLists = {
@@ -7,13 +6,16 @@ export type BookLists = {
     oldest_published_date: string,
     newest_published_date: string,
     updated: string,
+    list_name_encoded: string
 }
 
 export type BookDetails = {
 
-    list_name: string,
-
-
+    title: string,
+    book_image: string,
+    weeks_on_list: number
+    description: string,
+    amazon_product_url: string
 
 }
 
@@ -44,15 +46,16 @@ export const fetchListBooks = async () => {
 export const getBookDetails = async (listName: string) => {
 
     // let categorieName = window.localStorage.getItem(localStorageListName);
-    let bookStorage = getSaveDataDetails()
+    let bookStorage = getSaveDataDetails(listName)
 
-    if (!bookStorage) {
+    if (!bookStorage || bookStorage.length === 0) {
 
         try {
-            const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/current/${listName}.json?api-key=KF9ASDfmvWA3uXGbVU3FIPT5iWhQoPsB`)
+            const response = await fetch(`https://api.nytimes.com/svc/books/v3/lists/${listName}.json?api-key=KF9ASDfmvWA3uXGbVU3FIPT5iWhQoPsB`)
             const bookDetails = await response.json()
-            setSaveDataDetails(bookDetails)
-            bookStorage = bookDetails
+            const results = bookDetails.results.books
+            setSaveDataDetails(listName, results)
+            return results
         } catch (error) {
             console.log(error)
 
