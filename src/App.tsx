@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './reset.css'
 import './App.css';
 import { fetchListBooks, getBookDetails } from '../src/services/api'
@@ -13,6 +13,8 @@ function App() {
   const [data, setData] = useState<BookLists[]>([])
   const [bookDetails, setBookDetails] = useState<BookDetails[]>([])
   const [showList, setShowList] = useState<boolean>(true)
+  const [isLoading, setLoading] = useState<boolean>(false)
+
 
   useEffect(() => {
     const fetchAllBooks = async () => {
@@ -25,20 +27,24 @@ function App() {
   }, []);
 
   const fetchBookDetails = async (listName: string) => {
+    setLoading(true);
     const response = await getBookDetails(listName);
     setBookDetails(response);
     setShowList(false)
+    setLoading(false)
   };
 
 
 
   return (
 
-
     <>
       <NavBar showBackButton={!showList} onBackButtonClick={() => setShowList(true)} />
-      <div>
-        {showList && <Header />}
+
+      {showList && <Header />}
+      {isLoading ? (<div className="loading">
+        <div className="loading-spinner"></div>
+      </div>) :
         <div className='parentCard'>
           {showList && data.map((book) => {
             return (
@@ -54,33 +60,24 @@ function App() {
             )
           })}
         </div>
+      }
 
-        {/* {
-          !showList && (
-            <div>
-              <button onClick={() => setShowList(true)}>Back</button>
-            </div>
-          )
-        } */}
+      <div className='cardDetailsParent'>
+        {!showList && bookDetails.map((bookDetails) => (
+          <CardDetails
+            key={bookDetails.title}
+            title={bookDetails.title}
+            book_image={bookDetails.book_image}
+            weeks_on_list={bookDetails.weeks_on_list}
+            description={bookDetails.description}
+            amazon_product_url={bookDetails.amazon_product_url}
+          />
+        ))}
 
-        <div className='cardDetailsParent'>
-          {!showList && bookDetails.map((bookDetails) => (
-            <CardDetails
-              key={bookDetails.title}
-              title={bookDetails.title}
-              book_image={bookDetails.book_image}
-              weeks_on_list={bookDetails.weeks_on_list}
-              description={bookDetails.description}
-              amazon_product_url={bookDetails.amazon_product_url}
-            />
-          ))}
+      </div>
 
-        </div>
-      </div >
     </>
   )
-
-
 
 }
 
