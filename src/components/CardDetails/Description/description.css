@@ -33,7 +33,9 @@
 }
 
 .amazonText {
-
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: rgb(254, 153, 1);
     align-items: center;
     text-decoration: none;
