@@ -1,10 +1,11 @@
 import { FC } from "react";
-import './button.css'
 import { Props } from './type'
+import { ButtonDetails } from './styles'
 
 
 export const Button: FC<Props> = ({ onClick }) => {
     return (
-        <button className="buttonDetails" onClick={onClick}>Read more</button>
+
+        <ButtonDetails onClick={onClick}>Read more</ButtonDetails>
     );
 };

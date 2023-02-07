@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react';
 import './reset.css'
-import './App.css';
 import { fetchListBooks, getBookDetails } from '../src/services/api'
 import { Card } from '../src/components/Card'
 import { CardDetails } from '../src/components/CardDetails'
 import { BookLists, BookDetails } from '../src/services/api'
 import { Header } from './components/Header';
 import { NavBar } from './components/NavBar';
+import { Loading, LoadingSpinner, ParentCard, CardDetailsParent } from './styles'
+// import { ThemeProvider } from 'styled-components'
 
 function App() {
 
@@ -42,10 +43,12 @@ function App() {
       <NavBar showBackButton={!showList} onBackButtonClick={() => setShowList(true)} />
 
       {showList && <Header />}
-      {isLoading ? (<div className="loading">
-        <div className="loading-spinner"></div>
-      </div>) :
-        <div className='parentCard'>
+      {isLoading ? (
+        <Loading>
+          <LoadingSpinner></LoadingSpinner>
+        </Loading>) :
+
+        <ParentCard>
           {showList && data.map((book) => {
             return (
               <Card
@@ -59,10 +62,11 @@ function App() {
               />
             )
           })}
-        </div>
-      }
+        </ParentCard>
 
-      <div className='cardDetailsParent'>
+      }
+      <CardDetailsParent>
+
         {!showList && bookDetails.map((bookDetails) => (
           <CardDetails
             key={bookDetails.title}
@@ -74,7 +78,7 @@ function App() {
           />
         ))}
 
-      </div>
+      </CardDetailsParent>
 
     </>
   )

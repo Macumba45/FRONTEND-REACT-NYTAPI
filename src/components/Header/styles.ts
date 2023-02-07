@@ -1,13 +1,19 @@
-.header {
+import styled from "styled-components";
+
+export const HeaderContainer = styled.div`
+
     background-color: black;
     height: 40vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
 
-.headerTitle {
+`
+
+
+export const HeaderTitle = styled.h1`
+
     color: white;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 8vh;
@@ -15,13 +21,17 @@
     font-weight: 800;
     margin-top: 10px;
 
-}
+`
 
-.parrafHeader {
+
+export const ParrafoHeader = styled.p`
+    
     font-weight: 100;
     margin-top: 10px;
     font-size: 5vh;
     text-align: center;
     color: white;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
+
+
+`

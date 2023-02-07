@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { Props } from './type'
-import './image.css'
+import { ImgDetails } from './styles'
 
 
 export const Image: FC<Props> = ({ book_image }) => {
     return (
         <div>
-            <img className='imgDetails' alt='' src={book_image}></img>
+            <ImgDetails alt='' src={book_image} />
         </div>
     );
 };

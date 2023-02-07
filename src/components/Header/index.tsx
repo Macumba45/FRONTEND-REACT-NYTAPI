@@ -1,14 +1,15 @@
 import { FC } from "react";
 import { Props } from "./type";
-import './header.css'
+import { HeaderContainer, HeaderTitle, ParrafoHeader } from './styles'
 
 export const Header: FC<Props> = () => {
     return (
-        <div className="header">
 
-            <h1 className="headerTitle">NEW YORK TIMES</h1>
-            <p className="parrafHeader">BEST SELLERS</p>
+        <HeaderContainer>
+            <HeaderTitle>NEW YORK TIMES</HeaderTitle>
+            <ParrafoHeader>BEST SELLERS</ParrafoHeader>
+        </HeaderContainer>
 
-        </div>
+
     );
 };

@@ -1,5 +1,5 @@
 import type { FC } from "react";
-import './card.css'
+import { CardStyle } from './styles';
 import { Description } from "./Description";
 import { Title } from "./Title";
 import { Button } from "../Button";
@@ -7,7 +7,9 @@ import { Props } from './type';
 
 export const Card: FC<Props> = ({ list_name, oldest_published_date, newest_published_date, updated, listName, onClick }) => {
     return (
-        <div className="card">
+
+
+        <CardStyle>
             <Title
                 list_name={list_name}
             />
@@ -17,6 +19,7 @@ export const Card: FC<Props> = ({ list_name, oldest_published_date, newest_publi
                 updated={updated}
             />
             <Button onClick={() => onClick(listName)} />
-        </div>
+        </CardStyle>
+
     );
 };

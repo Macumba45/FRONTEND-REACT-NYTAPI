@@ -1,12 +1,17 @@
-.weeksOnList {
+import styled from "styled-components";
+
+export const WeeksOnList = styled.div`
+
     text-align: center;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: black;
     color: white;
     font-size: 0.8em;
-}
 
-.description {
+`
+
+export const DescriptionText = styled.div`
+
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 0.9em;
     padding-top: 10px;
@@ -16,23 +21,31 @@
     height: 150px;
     background-color: rgb(255, 255, 255);
     border-bottom: 1px solid black;
-}
 
-.amazonLink {
+`
+
+export const AmazonLink = styled.div`
+
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
     align-content: center;
-}
+    
+`
 
-.buttonAmazon {
+
+export const ButtonAmazon = styled.img`
+
     width: 20px;
     height: 20px;
     margin-left: 5px;
-}
+    
 
-.amazonText {
+
+`
+
+export const AmazonText = styled.a`
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -47,4 +60,10 @@
     font-weight: 500;
     margin: 0 20px 0 10px;
     border: 2px solid rgb(0, 0, 0);
-}
+
+    &:hover {
+        font-weight: 700;
+    }
+
+
+`

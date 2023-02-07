@@ -1,4 +1,8 @@
-.navBar {
+import styled from "styled-components";
+import img from './assets/icono.png'
+
+export const NavContainer = styled.div`
+
     background-color: black;
     height: 50px;
     display: flex;
@@ -7,28 +11,36 @@
     position: fixed;
     top: 0;
     width: 100%;
-}
 
-.profileLink {
+`
+
+export const ProfileLink = styled.a`
 
     margin-right: 30px;
     color: white;
     text-decoration: none;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
-}
+    &:hover {
+        font-weight: 600;
+    }
 
-.profileIco {
+`
+
+export const ProfileIco = styled.div`
+
     display: flex;
-    background-image: url(./assets/icono.png);
+    background-image: url(${img});
     width: 17px;
     height: 17px;
     background-size: cover;
     margin-right: 5px;
     background-repeat: no-repeat;
-}
 
-.buttonBack {
+`
+
+export const ButtonBack = styled.button`
+
     border: none;
     background-color: white;
     color: black;
@@ -48,4 +60,12 @@
     padding: 8px;
     border-radius: 10px;
     border: none;
-}
+
+    &:hover {
+        font-weight: 600;
+    }
+
+`
+
+
+
