@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Props } from "./type";
 import { HeaderContainer, HeaderTitle, ParrafoHeader } from './styles'
 
-export const Header: FC<Props> = () => {
+const Header: FC<Props> = () => {
     return (
 
         <HeaderContainer>
@@ -13,3 +13,5 @@ export const Header: FC<Props> = () => {
 
     );
 };
+
+export default Header;

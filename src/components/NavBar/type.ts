@@ -1,5 +1,6 @@
 export type Props = {
 
-    showBackButton: boolean,
-    onBackButtonClick: () => void
+    showBackButton?: boolean,
+    onBackButtonClick?: () => void,
+    ProfileLink?: string
 }

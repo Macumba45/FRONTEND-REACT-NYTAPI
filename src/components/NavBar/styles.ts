@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import img from './assets/icono.png'
+import profile from './assets/icono.png'
+import register from './assets/icons8-join-64.png'
 
 export const NavContainer = styled.div`
 
@@ -30,9 +31,21 @@ export const ProfileLink = styled.a`
 export const ProfileIco = styled.div`
 
     display: flex;
-    background-image: url(${img});
+    background-image: url(${profile});
     width: 17px;
     height: 17px;
+    background-size: cover;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+
+`
+
+export const RegisterIco = styled.div`
+
+    display: flex;
+    background-image: url(${register});
+    width: 30px;
+    height: 30px;
     background-size: cover;
     margin-right: 5px;
     background-repeat: no-repeat;
