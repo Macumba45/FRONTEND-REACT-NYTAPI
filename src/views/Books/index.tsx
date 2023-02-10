@@ -3,18 +3,18 @@ import { BookDetails, BookLists, fetchListBooks, getBookDetails } from "../../se
 import { ParentCard, CardDetailsParent, Loading, LoadingSpinner } from "./styles"
 import NavBar from "../../components/NavBar"
 import Card from "../../components/Card"
-import CardDetails from "../../components/CardDetails"
 import Header from "../../components/Header"
+import { useNavigate } from "react-router-dom"
 
 export const Books: FC = () => {
 
 
     const [data, setData] = useState<BookLists[]>([])
-    const [bookDetails, setBookDetails] = useState<BookDetails[]>([])
     const [showList, setShowList] = useState<boolean>(true)
     const [isLoading, setLoading] = useState<boolean>(false)
 
 
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchAllBooks = async () => {
@@ -25,15 +25,6 @@ export const Books: FC = () => {
         fetchAllBooks();
 
     }, []);
-
-    const fetchBookDetails = async (listName: string) => {
-        const response = await getBookDetails(listName);
-        setLoading(true);
-        setBookDetails(response);
-        setShowList(false)
-        setLoading(false)
-
-    };
 
 
     return (
@@ -57,30 +48,23 @@ export const Books: FC = () => {
                                 newest_published_date={book.newest_published_date}
                                 updated={book.updated}
                                 listName={book.list_name_encoded}
-                                onClick={fetchBookDetails}
+                                onClick={() => {
+                                    console.log(book.list_name)
+
+                                    navigate('/books/details', { state: { listName: book.list_name } });
+
+
+                                }}
                             />
                         )
                     })}
                 </ParentCard>
 
             }
-            <CardDetailsParent>
-
-                {!showList && bookDetails.map((bookDetails) => (
-                    <CardDetails
-                        key={bookDetails.title}
-                        title={bookDetails.title}
-                        book_image={bookDetails.book_image}
-                        weeks_on_list={bookDetails.weeks_on_list}
-                        description={bookDetails.description}
-                        amazon_product_url={bookDetails.amazon_product_url}
-                    />
-                ))}
-
-            </CardDetailsParent>
 
         </>
     )
 
 }
+
 

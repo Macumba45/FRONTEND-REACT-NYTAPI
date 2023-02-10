@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const CardStyle = styled.div`
 
@@ -8,5 +9,9 @@ width: 180px;
 height: 220px;
 text-align: center;
 border-radius: 10px;
+
+`
+
+export const LinkBookDetails = styled(Link)`
 
 `

@@ -4,7 +4,7 @@ import { Image } from "./Image";
 import { Description } from "./Description";
 import { Props } from './type';
 import { CardDetailsStyle } from "./styles";
-import { CardDetailsParent } from "../../views/BooksCard&Details/styles";
+import { CardDetailsParent } from "../../views/Books/styles";
 
 const CardDetails: FC<Props> = ({ title, book_image, weeks_on_list, description, amazon_product_url }) => {
     return (
