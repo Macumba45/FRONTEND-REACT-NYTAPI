@@ -1,8 +1,8 @@
 export type Props = {
-    list_name: string,
-    oldest_published_date: string,
-    newest_published_date: string,
-    updated: string,
-    listName: string,
-    onClick: (listName: string) => void,
+    list_name?: string,
+    oldest_published_date?: string,
+    newest_published_date?: string,
+    updated?: string,
+    listName?: string,
+    onClick?: (listName: string) => void,
 }

@@ -56,8 +56,6 @@ const SignUp: FC<Props> = () => {
 
     return (
 
-
-
         <MainFormContainer>
             <NavBar />
 

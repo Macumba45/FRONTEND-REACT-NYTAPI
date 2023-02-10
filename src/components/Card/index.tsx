@@ -4,7 +4,10 @@ import { Description } from "./Description";
 import { Title } from "./Title";
 import { Button } from "../Button";
 import { Props } from './type';
-import { ParentCard } from "../../views/BooksCard&Details/styles"
+import { ParentCard } from "../../views/Books/styles"
+import { LinkBookDetails } from './styles'
+import { Link } from 'react-router-dom';
+
 
 const Card: FC<Props> = ({ list_name, oldest_published_date, newest_published_date, updated, listName, onClick }) => {
     return (
@@ -12,14 +15,17 @@ const Card: FC<Props> = ({ list_name, oldest_published_date, newest_published_da
         <ParentCard>
             <CardStyle>
                 <Title
-                    list_name={list_name}
+                    list_name={list_name!}
                 />
                 <Description
-                    oldest_published_date={oldest_published_date}
-                    newest_published_date={newest_published_date}
-                    updated={updated}
+                    oldest_published_date={oldest_published_date!}
+                    newest_published_date={newest_published_date!}
+                    updated={updated!}
                 />
-                <Button onClick={() => onClick(listName)} />
+                <Link to="details">
+                    <Button onClick={() => onClick!(listName!)} />
+                </Link>
+
             </CardStyle>
         </ParentCard>
     );
