@@ -1,44 +1,43 @@
-import { FC, useState, useEffect } from "react"
+import { FC, useState, useEffect, useCallback } from "react"
 import { BookDetails, getBookDetails } from "../../services/api"
 import { CardDetailsParent } from "./styles"
 import NavBar from "../../components/NavBar"
 import CardDetails from "../../components/CardDetails"
 import { Props } from '../../components/Card/type'
-import { useLocation } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 
 
 export const BooksDetailsView: FC<Props> = () => {
 
-
     const [bookDetails, setBookDetails] = useState<BookDetails[]>([])
-    const [showList, setShowList] = useState<boolean>(false)
+    const { listName } = useParams<{ listName: string }>();
 
-    let location = useLocation();
+    const navigate = useNavigate();
 
-    useEffect(() => {
-        const { state } = location;
-        console.log(state)
-        if (state && state.listName) {
-            fetchBookDetails(state.listName);
-        }
+    const fetchBookDetails = useCallback(async (list: string) => {
+        const response = await getBookDetails(list);
+        setBookDetails(response);
+        console.log("entro 1")
     }, []);
 
-    const fetchBookDetails = async (listName: string) => {
-        const response = await getBookDetails(listName);
-        setBookDetails(response);
-        setShowList(true)
+    const goToBack = useCallback(() => {
+        navigate('/books')
+    }, [navigate]);
 
-    };
+    useEffect(() => {
+        if (listName) {
+            fetchBookDetails(listName);
+            console.log("entro 2")
+        }
+    }, [listName, fetchBookDetails]);
 
 
     return (
-
         <>
-            <NavBar showBackButton={showList} onBackButtonClick={() => setShowList(true)} />
+            <NavBar showBackButton onBackButtonClick={goToBack} />
 
             <CardDetailsParent>
-
-                {showList && bookDetails.map((bookDetails) => (
+                {bookDetails.map((bookDetails) => (
                     <CardDetails
                         key={bookDetails.title}
                         title={bookDetails.title}

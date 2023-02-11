@@ -15,10 +15,12 @@ export const NavContainer = styled.div`
 
 `
 
-export const ProfileLink = styled.a`
+export const ProfileLink = styled.button`
 
     margin-right: 30px;
     color: white;
+    background: none;
+    border: none;
     text-decoration: none;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;

@@ -1,6 +1,6 @@
-import { FC, useState, useEffect } from "react"
-import { BookDetails, BookLists, fetchListBooks, getBookDetails } from "../../services/api"
-import { ParentCard, CardDetailsParent, Loading, LoadingSpinner } from "./styles"
+import { FC, useState, useEffect, useCallback } from "react"
+import { BookLists, fetchListBooks } from "../../services/api"
+import { ParentCard, Loading, LoadingSpinner } from "./styles"
 import NavBar from "../../components/NavBar"
 import Card from "../../components/Card"
 import Header from "../../components/Header"
@@ -11,7 +11,7 @@ export const Books: FC = () => {
 
     const [data, setData] = useState<BookLists[]>([])
     const [showList, setShowList] = useState<boolean>(true)
-    const [isLoading, setLoading] = useState<boolean>(false)
+    const [isLoading] = useState<boolean>(false)
 
 
     const navigate = useNavigate();
@@ -25,6 +25,10 @@ export const Books: FC = () => {
         fetchAllBooks();
 
     }, []);
+
+    const goToDetails = useCallback((listName: string) => {
+        navigate(`/books/details/${listName}`)
+    }, [navigate])
 
 
     return (
@@ -48,13 +52,7 @@ export const Books: FC = () => {
                                 newest_published_date={book.newest_published_date}
                                 updated={book.updated}
                                 listName={book.list_name_encoded}
-                                onClick={() => {
-                                    console.log(book.list_name)
-
-                                    navigate('/books/details', { state: { listName: book.list_name } });
-
-
-                                }}
+                                onClick={goToDetails}
                             />
                         )
                     })}
