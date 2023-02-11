@@ -1,11 +1,10 @@
 import { MainFormContainer, LoginTitle, Form, EmailContainer, PasswordContainer, LabelContainer, Label, Input, LinkSignupContainer, LinkSignupText, ButtonLoginContainer, ButtonLogin } from './styles'
-import React, { FC, useCallback, useEffect, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import React, { FC, useCallback, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Props } from "./type"
 import NavBar from "../NavBar";
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../services/firebase/firebase";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,21 +13,7 @@ const Login: FC<Props> = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
-    const location = useLocation();
-
-    useEffect(() => {
-        if (loading) {
-            // maybe trigger a loading screen
-            return;
-        }
-        if (!user && location.pathname !== "/login" && location.pathname !== "/") {
-            navigate("/login");
-        }
-        if (user) navigate("/books");
-    }, [user, loading, location.pathname]);
-
 
     const onSubmitLogin = () => {
         // check if email is empty

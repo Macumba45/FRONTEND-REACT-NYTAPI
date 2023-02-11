@@ -1,26 +1,50 @@
-import { FC } from "react"
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { FC, useEffect, useState } from "react"
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Books } from "../../views/Books"
 import { BooksDetailsView } from "../../views/BooksDetails"
 import { LoginViewPage } from "../../views/Login"
 import { SignUpView } from "../../views/SignUp"
-// import {loggedIn, firebaseObserver} from "../firebase";
-// import {useEffect, useState} from "react";
-
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import firebase from "firebase/compat/app";
+import { auth } from "../../services/firebase/firebase"
 
 
 const Router: FC = () => {
+
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUser(user);
+            } else {
+                setUser(null);
+            }
+        });
+        return () => unsubscribe();
+    }, []);
+
 
     return (
 
         <BrowserRouter>
 
             <Routes>
-                <Route path="/" element={<LoginViewPage />} />
-                <Route path="/login" element={<LoginViewPage />} />
-                <Route path="/signUp" element={<SignUpView />} />
-                <Route path="/books" element={<Books />} />
-                <Route path="/books/details/:listName" element={<BooksDetailsView />} />
+                <Route path="/" element={
+                    user ? <Navigate to="/books" /> : <LoginViewPage />
+                } />
+                <Route path="/login" element={
+                    user ? <Navigate to="/books" /> : <LoginViewPage />
+                } />
+                <Route path="/signUp" element={
+                    user ? <Navigate to="/books" /> : <SignUpView />
+                } />
+                <Route path="/books" element={
+                    user ? <Books /> : <Navigate to="/login" />
+                } />
+                <Route path="/books/details/:listName" element={
+                    user ? <BooksDetailsView /> : <Navigate to="/login" />
+                } />
             </Routes>
 
         </BrowserRouter>

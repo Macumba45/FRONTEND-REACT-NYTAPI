@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useContext } from "react";
 import { Props } from "./type"
 import { NavContainer, ProfileIco, ProfileLink, ButtonBack, RegisterIco } from "./styles";
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -14,9 +14,9 @@ const NavBar: FC<Props> = ({ showBackButton, onBackButtonClick }) => {
     const handleLogout = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         signOut(auth)
-        navigate("/login");
-    }, [navigate])
-
+        window.localStorage.clear()
+        navigate("/");
+    }, [])
 
     return (
         <NavContainer>
