@@ -15,7 +15,7 @@ const Login: FC<Props> = () => {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const onSubmitLogin = () => {
+    const onSubmitLogin = async () => {
         // check if email is empty
         if (email === '') {
             toast.error('Email is required', {
@@ -32,9 +32,16 @@ const Login: FC<Props> = () => {
             return;
         }
 
-        toast.success(`Login successful with this ${email}`, {
-            position: toast.POSITION.BOTTOM_RIGHT,
-        });
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            toast.success(`Login successful with this ${email}`, {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        } catch (error: unknown) {
+            toast.error(String(`Login error with this ${email}`), {
+                position: toast.POSITION.BOTTOM_RIGHT,
+            });
+        }
     }
 
 

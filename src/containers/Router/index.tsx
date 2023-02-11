@@ -4,8 +4,7 @@ import { Books } from "../../views/Books"
 import { BooksDetailsView } from "../../views/BooksDetails"
 import { LoginViewPage } from "../../views/Login"
 import { SignUpView } from "../../views/SignUp"
-import { getAuth, onAuthStateChanged, User } from "firebase/auth";
-import firebase from "firebase/compat/app";
+import { onAuthStateChanged, User } from "firebase/auth";
 import { auth } from "../../services/firebase/firebase"
 
 
