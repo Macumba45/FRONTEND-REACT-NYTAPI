@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react"
+import { FC, useEffect, useState, useMemo } from "react"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { Books } from "../../views/Books"
 import { BooksDetailsView } from "../../views/BooksDetails"
@@ -11,43 +11,41 @@ import { auth } from "../../services/firebase/firebase"
 const Router: FC = () => {
 
     const [user, setUser] = useState<User | null>(null);
+    const [loggedIn, setLoggedIn] = useState(false)
+
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            if (user) {
-                setUser(user);
-            } else {
-                setUser(null);
-            }
+        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            setUser(currentUser);
         });
         return () => unsubscribe();
     }, []);
 
+    const memoizedUser = useMemo(() => user, [user]);
+    console.log(memoizedUser);
+
 
     return (
-
         <BrowserRouter>
-
             <Routes>
                 <Route path="/" element={
-                    user ? <Navigate to="/books" /> : <LoginViewPage />
+                    memoizedUser ? <Navigate to="/books" /> : <LoginViewPage />
                 } />
                 <Route path="/login" element={
-                    user ? <Navigate to="/books" /> : <LoginViewPage />
+                    memoizedUser ? <Navigate to="/books" /> : <LoginViewPage />
                 } />
                 <Route path="/signUp" element={
-                    user ? <Navigate to="/books" /> : <SignUpView />
+                    memoizedUser ? <Navigate to="/books" /> : <SignUpView />
                 } />
                 <Route path="/books" element={
-                    user ? <Books /> : <Navigate to="/login" />
+                    memoizedUser ? <Books /> : <Navigate to="/" />
                 } />
                 <Route path="/books/details/:listName" element={
-                    user ? <BooksDetailsView /> : <Navigate to="/login" />
+                    memoizedUser ? <BooksDetailsView /> : <Navigate to="/" />
                 } />
             </Routes>
-
         </BrowserRouter>
-    )
-}
+    );
+};
 
-export default Router
+export default Router;

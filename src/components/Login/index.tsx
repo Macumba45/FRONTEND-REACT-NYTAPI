@@ -1,6 +1,5 @@
 import { MainFormContainer, LoginTitle, Form, EmailContainer, PasswordContainer, LabelContainer, Label, Input, LinkSignupContainer, LinkSignupText, ButtonLoginContainer, ButtonLogin } from './styles'
 import React, { FC, useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Props } from "./type"
 import NavBar from "../NavBar";
 import { signInWithEmailAndPassword } from "firebase/auth"
@@ -9,13 +8,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 
+
 const Login: FC<Props> = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const navigate = useNavigate();
 
-    const onSubmitLogin = async () => {
+
+    const onSubmitLogin = () => {
         // check if email is empty
         if (email === '') {
             toast.error('Email is required', {
@@ -33,7 +33,7 @@ const Login: FC<Props> = () => {
         }
 
         try {
-            await signInWithEmailAndPassword(auth, email, password);
+            signInWithEmailAndPassword(auth, email, password);
             toast.success(`Login successful with this ${email}`, {
                 position: toast.POSITION.BOTTOM_RIGHT,
             });
@@ -55,10 +55,8 @@ const Login: FC<Props> = () => {
                 password
             );
             window.localStorage.setItem("userInfo", JSON.stringify(userCredentialsLogin.user));
-            navigate("/books");
-
         },
-        [email, password, navigate]
+        [email, password]
     );
 
 
@@ -121,3 +119,7 @@ const Login: FC<Props> = () => {
 }
 
 export default Login;
+
+
+
+

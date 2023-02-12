@@ -17,7 +17,6 @@ export const BooksDetailsView: FC<Props> = () => {
     const fetchBookDetails = useCallback(async (list: string) => {
         const response = await getBookDetails(list);
         setBookDetails(response);
-        console.log("entro 1")
     }, []);
 
     const goToBack = useCallback(() => {
@@ -27,7 +26,6 @@ export const BooksDetailsView: FC<Props> = () => {
     useEffect(() => {
         if (listName) {
             fetchBookDetails(listName);
-            console.log("entro 2")
         }
     }, [listName, fetchBookDetails]);
 

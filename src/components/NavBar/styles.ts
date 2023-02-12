@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import profile from './assets/icono.png'
-import register from './assets/icons8-join-64.png'
 
 export const NavContainer = styled.div`
 
@@ -24,32 +22,29 @@ export const ProfileLink = styled.button`
     text-decoration: none;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 0.9rem;
+    cursor: pointer;
+
     &:hover {
         font-weight: 600;
     }
 
 `
 
-export const ProfileIco = styled.div`
-
+export const ProfileIco = styled.img<{ src: string }>`
     display: flex;
-    background-image: url(${profile});
     width: 17px;
     height: 17px;
     background-size: cover;
-    margin-right: 5px;
     background-repeat: no-repeat;
 
 `
 
-export const RegisterIco = styled.div`
+export const RegisterIco = styled.img<{ src: string }>`
 
     display: flex;
-    background-image: url(${register});
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     background-size: cover;
-    margin-right: 5px;
     background-repeat: no-repeat;
 
 `
@@ -75,6 +70,8 @@ export const ButtonBack = styled.button`
     padding: 8px;
     border-radius: 10px;
     border: none;
+    cursor: pointer;
+
 
     &:hover {
         font-weight: 600;

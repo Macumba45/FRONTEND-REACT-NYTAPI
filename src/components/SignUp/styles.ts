@@ -8,7 +8,6 @@ align-items: center;
 display: flex;
 justify-content: center;
 
-
 `
 
 export const Form = styled.form`
@@ -43,8 +42,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 /* margin-left: 3.125rem; */
-margin-top: 3rem;
-margin-bottom: 3rem;
+margin-top: 6.25rem;
 
 
 `
@@ -103,9 +101,10 @@ width: 15rem;
 
 export const ButtonSignUpContainer = styled.div`
 
-    align-items: center;
+align-items: center;
     display: flex;
     justify-content: center;
+
 
 
 `
@@ -114,7 +113,7 @@ export const LinkLoginContainer = styled.div`
 align-items: center;
 display: flex;
 justify-content: center;
-margin-top: 2.5rem;
+margin-top: 3.125rem;
 
 `
 
@@ -147,8 +146,8 @@ export const ButtonSignUp = styled.button`
     font-family: ${({ theme }) => theme.fonts.primary};
     font-size: ${({ theme }) => theme.fontSizes.smallest};
     font-weight: 500;
-
-    margin-top: 2rem;
+    margin-bottom: 3.125rem;
+    margin-top: 50px;
     padding: 1rem 2rem 1rem 2rem;
     text-decoration: none;
 
@@ -158,5 +157,6 @@ export const ButtonSignUp = styled.button`
         color: black;
         cursor: pointer;
     }
+
 
 `
