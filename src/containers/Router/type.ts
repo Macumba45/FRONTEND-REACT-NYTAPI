@@ -1,6 +1,8 @@
+import { ReactNode } from "react"
+
 export type Props = {
 
-    children: React.ReactNode; //👈 children prop typr
+    children: string | JSX.Element | JSX.Element[] | ReactNode
 
 
 }

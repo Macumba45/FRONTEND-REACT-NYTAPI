@@ -6,10 +6,12 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../services/firebase/firebase";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Login: FC<Props> = () => {
+    const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -54,7 +56,9 @@ const Login: FC<Props> = () => {
                 email,
                 password
             );
-            window.localStorage.setItem("userInfo", JSON.stringify(userCredentialsLogin.user));
+            const token = await userCredentialsLogin.user.getIdToken()
+            window.localStorage.setItem("userInfo", JSON.stringify(token));
+            navigate('/books')
         },
         [email, password]
     );

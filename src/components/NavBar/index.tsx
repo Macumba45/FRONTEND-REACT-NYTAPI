@@ -10,6 +10,7 @@ const RegisterIcon = require("./assets/icons8-join-64.png")
 
 const NavBar: FC<Props> = ({ showBackButton, onBackButtonClick }) => {
 
+    const navigate = useNavigate();
     const location = useLocation();
 
     const profile = location.pathname === "/login" || location.pathname === "/signUp" || location.pathname === "/" ? "Login" : "Profile";
@@ -18,12 +19,11 @@ const NavBar: FC<Props> = ({ showBackButton, onBackButtonClick }) => {
     const profileImage = location.pathname === "/login" || location.pathname === "/signUp" ? LoginIcon : LoginIcon;
     const logoutImage = location.pathname === "/login" || location.pathname === "/signUp" || location.pathname === "/" ? RegisterIcon : LogoutIcon;
 
-    const navigate = useNavigate();
-
     const handleLogout = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
         signOut(auth)
         window.localStorage.clear()
+        navigate('/')
     }, [])
 
     return (
