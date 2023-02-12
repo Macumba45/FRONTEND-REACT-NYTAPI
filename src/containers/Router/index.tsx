@@ -22,13 +22,12 @@ const Router: FC = () => {
     }, []);
 
     const memoizedUser = useMemo(() => user, [user]);
-    console.log(memoizedUser);
-
+    console.log(memoizedUser)
 
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={
+                <Route index element={
                     memoizedUser ? <Navigate to="/books" /> : <LoginViewPage />
                 } />
                 <Route path="/login" element={

@@ -24,8 +24,7 @@ const NavBar: FC<Props> = ({ showBackButton, onBackButtonClick }) => {
         e.preventDefault();
         signOut(auth)
         window.localStorage.clear()
-        navigate("/");
-    }, [navigate])
+    }, [])
 
     return (
         <NavContainer>
