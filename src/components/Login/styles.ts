@@ -20,7 +20,7 @@ border-radius: 10px;
 height: 35rem;
 margin-left: 1.7rem;
 margin-right: 1.7rem;
-margin-top: 7rem;
+margin-top: 6rem;
 /* width: 26rem; */
 
 `
