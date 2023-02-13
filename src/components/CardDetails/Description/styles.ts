@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const WeeksOnList = styled.div`
 
     text-align: center;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     background-color: black;
     color: white;
     font-size: 0.8em;
@@ -12,7 +12,7 @@ export const WeeksOnList = styled.div`
 
 export const DescriptionText = styled.div`
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 0.9em;
     padding-top: 10px;
     padding-left: 8px;
@@ -55,7 +55,7 @@ export const AmazonText = styled.a`
     color: white;
     padding: 10px;
     border-radius: 8px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 0.8em;
     font-weight: 500;
     margin: 0 20px 0 10px;

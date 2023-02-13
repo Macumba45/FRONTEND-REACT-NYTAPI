@@ -60,7 +60,7 @@ const Login: FC<Props> = () => {
             window.localStorage.setItem("userInfo", JSON.stringify(token));
             navigate('/books')
         },
-        [email, password]
+        [email, password, navigate]
     );
 
 

@@ -70,7 +70,7 @@ const SignUp: FC<Props> = () => {
                 </PasswordContainer>
 
                 <LinkLoginContainer>
-                    <LinkLoginText to="/login">If you are already SignUp, click here to loggin!</LinkLoginText>
+                    <LinkLoginText to="/login">If you are already SignUp, click here to login!</LinkLoginText>
                 </LinkLoginContainer>
 
                 <ButtonSignUpContainer>

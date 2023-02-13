@@ -10,17 +10,19 @@ export const NavContainer = styled.div`
     position: fixed;
     top: 0;
     width: 100%;
+    margin-bottom: 200px;
 
 `
 
 export const ProfileLink = styled.button`
 
     margin-right: 30px;
+    font-weight: 200;
     color: white;
     background: none;
     border: none;
     text-decoration: none;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 0.9rem;
     cursor: pointer;
 
@@ -55,7 +57,7 @@ export const ButtonBack = styled.button`
     background-color: white;
     color: black;
     font-weight: 300;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     position: absolute;
     left: 0;
     margin-left: 30px;

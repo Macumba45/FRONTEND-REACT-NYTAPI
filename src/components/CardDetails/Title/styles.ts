@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 export const TitleDetails = styled.div`
 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 1em;
     font-weight: 600;
     text-align: center;

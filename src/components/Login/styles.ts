@@ -18,9 +18,9 @@ flex-direction: column; */
 background-color: white;
 border-radius: 10px;
 height: 35rem;
-margin-top: 6.25rem;
 margin-left: 1.7rem;
 margin-right: 1.7rem;
+margin-top: 7rem;
 /* width: 26rem; */
 
 `

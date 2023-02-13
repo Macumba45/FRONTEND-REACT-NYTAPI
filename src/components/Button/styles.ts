@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const ButtonDetails = styled.button`
 
-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 11px;
     display: inline-block;
     margin-left: auto;

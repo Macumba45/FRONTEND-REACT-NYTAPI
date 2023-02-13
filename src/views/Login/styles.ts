@@ -12,7 +12,6 @@ background-attachment: fixed;
 background-position: center;
 // scale the image to cover the container the smaller quantity of width or height
 background-size: cover;
-
 width: 100vw;
 height: 100vh;
 

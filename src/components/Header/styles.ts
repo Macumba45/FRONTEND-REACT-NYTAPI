@@ -15,7 +15,7 @@ export const HeaderContainer = styled.div`
 export const HeaderTitle = styled.h1`
 
     color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
     font-size: 8vh;
     text-align: center;
     font-weight: 800;
@@ -31,7 +31,7 @@ export const ParrafoHeader = styled.p`
     font-size: 5vh;
     text-align: center;
     color: white;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: ${({ theme }) => theme.fonts.primary};
 
 
 `
