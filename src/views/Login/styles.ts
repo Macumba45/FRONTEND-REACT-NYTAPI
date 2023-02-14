@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import { Form as defaultForm } from "formik"
 
 
 
@@ -20,7 +21,7 @@ justify-content: center;
 
 `
 
-export const Form = styled.form`
+export const Form = styled(defaultForm)`
 /* 
 display: flex;
 flex-direction: column; */
@@ -81,10 +82,11 @@ margin: 0 2.1rem;
 `
 
 
-export const Input = styled.input`
+export const Input = styled.input<{ $hasError?: boolean }>`
 
 border-radius: 5px;
-border:0.1px solid #007e75;
+border:0.1px solid ${({ $hasError, theme }) => $hasError ? theme.colors.danger : theme.colors.secondary};
+padding-left: 0.5rem;
 box-sizing: border-box;
 font-family: ${({ theme }) => theme.fonts.primary};
 font-size: 0.8rem;
@@ -94,8 +96,14 @@ margin-left: 2rem;
 margin-top: 0.625rem;
 width: 15rem;
 
+${({ $hasError, theme }) =>
 
+        $hasError &&
+        css`
 
+        color: ${theme.colors.danger};
+        
+        `}
 
 &::placeholder {
     color: ${({ theme }) => theme.colors.primary};
@@ -103,9 +111,18 @@ width: 15rem;
     font-size: 0.7rem;
     font-weight: 200;
     opacity: 0.5;
-    padding-left: 0.313rem;
+    
 }
 
+`
+
+export const Error = styled.span`
+
+color: ${({ theme }) => theme.colors.danger};
+font-family: ${({ theme }) => theme.fonts.primary};
+font-size: 0.7rem;
+margin-top: 0.5rem;
+margin-left: 2.05rem;
 
 `
 
