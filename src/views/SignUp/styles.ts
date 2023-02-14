@@ -190,3 +190,20 @@ export const ButtonSignUp = styled.button`
 
 `
 
+export const ErrorFirebaseContainer = styled.div`
+    display: flex;
+    justify-content: center;
+   
+
+`
+
+export const ErrorFirebaseText = styled.p`
+
+    font-family: ${({ theme }) => theme.fonts.primary};
+    font-size: ${({ theme }) => theme.fontSizes.smallest};
+    font-weight: ${({ theme }) => theme.fontWeights.semiBold};
+    color: ${({ theme }) => theme.colors.danger};
+    margin-bottom: 1rem;
+
+`
+

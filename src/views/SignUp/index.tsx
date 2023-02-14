@@ -1,5 +1,5 @@
 import { FC, useCallback } from "react";
-import { MainFormContainer, Form, SignUpTitle, EmailContainer, PasswordContainer, LabelContainer, Label, Input, ButtonSignUpContainer, LinkLoginContainer, LinkLoginText, ButtonSignUp, LoginBackImg, Error } from "./styles"
+import { MainFormContainer, Form, SignUpTitle, EmailContainer, PasswordContainer, LabelContainer, Label, Input, ButtonSignUpContainer, LinkLoginContainer, LinkLoginText, ButtonSignUp, LoginBackImg, Error, ErrorFirebaseContainer, ErrorFirebaseText } from "./styles"
 import { Props } from "./type"
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
@@ -17,21 +17,31 @@ const SignUp: FC<Props> = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const [firebaseErrorMessage, setFirebaseErrorMessage] = useState('');
 
     const handleSubmit = useCallback(
-        async (values: typeof initialValues) => {
+        async (values: typeof initialValues, { setErrors }: any) => {
+            try {
+                const { email, password } = values;
+                const userCredentialsLogin = await createUserWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+                window.localStorage.setItem(
+                    "token",
+                    JSON.stringify(userCredentialsLogin.user)
+                );
+                navigate("/books");
 
-            const { email, password } = values;
-            const userCredentialsLogin = await createUserWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
-            window.localStorage.setItem(
-                "token",
-                JSON.stringify(userCredentialsLogin.user)
-            );
-            navigate("/books");
+            } catch (error: any) {
+
+                setFirebaseErrorMessage(error.code);
+                if (error.code === "auth/email-already-in-use") {
+                    setErrors({ error: 'Usuario no encontrado' });
+                }
+            }
+
 
         },
         [navigate]
@@ -92,8 +102,13 @@ const SignUp: FC<Props> = () => {
                                 <LinkLoginText to="/login">If you are already SignUp, click here to login!</LinkLoginText>
                             </LinkLoginContainer>
                             <ButtonSignUpContainer>
-                                <ButtonSignUp type="submit">Log in</ButtonSignUp>
+                                <ButtonSignUp type="submit">Sign Up</ButtonSignUp>
                             </ButtonSignUpContainer>
+                            <ErrorFirebaseContainer>{firebaseErrorMessage && (
+                                <ErrorFirebaseText>
+                                    {firebaseErrorMessage === 'auth/email-already-in-use' ? 'User already exists' : 'Error in Sign Up'}
+                                </ErrorFirebaseText>
+                            )}</ErrorFirebaseContainer>
                         </Form>
                     </Formik>
                 </MainFormContainer>

@@ -10,14 +10,12 @@ import { Field, Formik } from 'formik';
 import { validationSchema, initialValues } from './constants';
 
 
+
 const Login: FC<Props> = () => {
 
     const navigate = useNavigate();
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-
     const [firebaseErrorMessage, setFirebaseErrorMessage] = useState('');
 
     const handleSubmit = useCallback(
@@ -111,8 +109,8 @@ const Login: FC<Props> = () => {
                             </ButtonLoginContainer>
                             <ErrorFirebaseContainer>{firebaseErrorMessage && (
                                 <ErrorFirebaseText>
-                                    {firebaseErrorMessage === 'auth/user-not-found' ? 'User not found' :
-                                        firebaseErrorMessage === 'auth/wrong-password' ? 'Incorrect Password' :
+                                    {firebaseErrorMessage === 'auth/user-not-found' ? 'User or password is incorrect' :
+                                        firebaseErrorMessage === 'auth/wrong-password' ? 'User or password is incorrect' :
                                             'Error de inicio de sesión, inténtalo de nuevo.'}
                                 </ErrorFirebaseText>
                             )}</ErrorFirebaseContainer>
