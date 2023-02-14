@@ -89,7 +89,7 @@ const SignUp: FC<Props> = () => {
                                 )}
                             </Field>
                             <LinkLoginContainer>
-                                <LinkLoginText to="/login">If you are not SignUp, click here!</LinkLoginText>
+                                <LinkLoginText to="/login">If you are already SignUp, click here to login!</LinkLoginText>
                             </LinkLoginContainer>
                             <ButtonSignUpContainer>
                                 <ButtonSignUp type="submit">Log in</ButtonSignUp>
