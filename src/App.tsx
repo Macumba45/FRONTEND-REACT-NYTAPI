@@ -7,11 +7,13 @@ import Router from './containers/Router'
 
 function App() {
 
+
+
   return (
 
     <ThemeProvider theme={theme}>
 
-      <Router children={undefined} />
+      <Router />
 
     </ThemeProvider>
 

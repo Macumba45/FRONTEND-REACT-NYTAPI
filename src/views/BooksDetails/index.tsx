@@ -7,7 +7,7 @@ import { Props } from '../../components/Card/type'
 import { useParams, useNavigate } from "react-router-dom"
 
 
-export const BooksDetailsView: FC<Props> = () => {
+export const BooksDetails: FC<Props> = () => {
 
     const [bookDetails, setBookDetails] = useState<BookDetails[]>([])
     const { listName } = useParams<{ listName: string }>();

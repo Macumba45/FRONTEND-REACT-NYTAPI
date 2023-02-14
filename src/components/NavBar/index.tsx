@@ -1,6 +1,6 @@
 import { FC, useCallback } from "react";
 import { Props } from "./type"
-import { NavContainer, ProfileIco, ProfileLink, ButtonBack, RegisterIco } from "./styles";
+import { Nav, ProfileIco, ProfileLink, ButtonBack, RegisterIco, Container } from "./styles";
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from "../../services/firebase/firebase";
 import { signOut } from "firebase/auth";
@@ -24,19 +24,22 @@ const NavBar: FC<Props> = ({ showBackButton, onBackButtonClick }) => {
         signOut(auth)
         window.localStorage.clear()
         navigate('/')
-    }, [])
+    }, [navigate])
 
     return (
-        <NavContainer>
-            {showBackButton && (
-                <ButtonBack onClick={onBackButtonClick}>Back</ButtonBack>
-            )}
 
-            <ProfileIco src={profileImage} />
-            <ProfileLink >{profile}</ProfileLink>
-            <RegisterIco src={logoutImage} />
-            <ProfileLink onClick={handleLogout}>{logout}</ProfileLink>
-        </NavContainer>
+        <Container>
+            <Nav>
+                {showBackButton && (
+                    <ButtonBack onClick={onBackButtonClick}>Back</ButtonBack>
+                )}
+
+                <ProfileIco src={profileImage} />
+                <ProfileLink >{profile}</ProfileLink>
+                <RegisterIco src={logoutImage} />
+                <ProfileLink onClick={handleLogout}>{logout}</ProfileLink>
+            </Nav>
+        </Container>
     );
 };
 

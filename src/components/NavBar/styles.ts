@@ -1,6 +1,14 @@
 import styled from "styled-components";
 
-export const NavContainer = styled.div`
+
+export const Container = styled.div`
+
+    display: flex;
+    justify-content: center;
+
+`
+
+export const Nav = styled.nav`
 
     background-color: black;
     height: 50px;
@@ -10,13 +18,13 @@ export const NavContainer = styled.div`
     position: fixed;
     top: 0;
     width: 100%;
-    margin-bottom: 200px;
+    /* margin-bottom: 100px; */
 
 `
 
 export const ProfileLink = styled.button`
 
-    margin-right: 30px;
+    margin-right: 0.8rem;
     font-weight: 200;
     color: white;
     background: none;
