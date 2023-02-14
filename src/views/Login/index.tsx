@@ -1,4 +1,4 @@
-import { MainFormContainer, LoginTitle, Form, EmailContainer, PasswordContainer, LabelContainer, Label, Input, LinkSignupContainer, LinkSignupText, ButtonLoginContainer, ButtonLogin, LoginBackImg, Error } from './styles'
+import { MainFormContainer, LoginTitle, Form, EmailContainer, PasswordContainer, LabelContainer, Label, Input, LinkSignupContainer, LinkSignupText, ButtonLoginContainer, ButtonLogin, LoginBackImg, Error, ErrorFirebaseContainer, ErrorFirebaseText } from './styles'
 import { FC, useCallback, useState } from "react";
 import { Props } from "./type"
 import NavBar from '../../components/NavBar';
@@ -10,7 +10,6 @@ import { Field, Formik } from 'formik';
 import { validationSchema, initialValues } from './constants';
 
 
-
 const Login: FC<Props> = () => {
 
     const navigate = useNavigate();
@@ -19,22 +18,38 @@ const Login: FC<Props> = () => {
     const [password, setPassword] = useState('');
 
 
+    const [firebaseErrorMessage, setFirebaseErrorMessage] = useState('');
+
     const handleSubmit = useCallback(
-        async (values: typeof initialValues) => {
+        async (values: typeof initialValues, { setErrors }: any) => {
 
-            const { email, password } = values;
-            const userCredentialsLogin = await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
-            );
+            try {
 
-            const token = await userCredentialsLogin.user.getIdToken()
-            setAuthenticatedToken(token)
-            navigate('/books')
+                const { email, password } = values;
+                const userCredentialsLogin = await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
 
-        },
-        [navigate]
+                const token = await userCredentialsLogin.user.getIdToken()
+                setAuthenticatedToken(token)
+                navigate('/books')
+
+            } catch (error: any) {
+                setFirebaseErrorMessage(error.code);
+
+                if (error.code === 'auth/user-not-found') {
+                    setErrors({ error: 'Usuario no encontrado' });
+                } else if (error.code === 'auth/wrong-password') {
+                    setErrors({ error: 'Contraseña incorrecta' });
+                } else {
+                    setErrors({ error: 'Error de inicio de sesión, inténtalo de nuevo.' });
+                }
+
+            }
+
+        }, [navigate]
     );
 
 
@@ -92,9 +107,18 @@ const Login: FC<Props> = () => {
                                 <LinkSignupText to="/signUp">If you are not SignUp, click here!</LinkSignupText>
                             </LinkSignupContainer>
                             <ButtonLoginContainer>
-                                <ButtonLogin type="submit">Log in</ButtonLogin>
+                                <ButtonLogin type="submit" >Log in</ButtonLogin>
                             </ButtonLoginContainer>
+                            <ErrorFirebaseContainer>{firebaseErrorMessage && (
+                                <ErrorFirebaseText>
+                                    {firebaseErrorMessage === 'auth/user-not-found' ? 'User not found' :
+                                        firebaseErrorMessage === 'auth/wrong-password' ? 'Incorrect Password' :
+                                            'Error de inicio de sesión, inténtalo de nuevo.'}
+                                </ErrorFirebaseText>
+                            )}</ErrorFirebaseContainer>
+
                         </Form>
+
                     </Formik>
                 </MainFormContainer>
             </LoginBackImg>

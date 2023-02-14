@@ -56,7 +56,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 /* margin-left: 3.125rem; */
-margin-top: 6.25rem;
+margin-top: 5rem;
 
 
 `
