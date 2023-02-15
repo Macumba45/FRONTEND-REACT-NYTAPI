@@ -34,7 +34,7 @@ height: 35rem;
 margin-left: 1.7rem;
 margin-right: 1.7rem;
   /* Margen para pantalla grande */
-  margin-top: 11rem;
+  margin-top: 6rem;
 
   /* Media query para pantalla pequeña */
   @media (max-width: 768px) {
