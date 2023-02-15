@@ -27,15 +27,19 @@ justify-content: center;
 `
 
 export const Form = styled(defaultForm)`
-/* 
-display: flex;
-flex-direction: column; */
+
 background-color: white;
 border-radius: 10px;
 height: 35rem;
 margin-left: 1.7rem;
 margin-right: 1.7rem;
-margin-top: 6rem;
+  /* Margen para pantalla grande */
+  margin-top: 11rem;
+
+  /* Media query para pantalla pequeña */
+  @media (max-width: 768px) {
+    margin-top: 6.25rem;
+  }
 
 
 `
