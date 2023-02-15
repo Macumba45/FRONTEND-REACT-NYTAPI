@@ -13,6 +13,8 @@ background-size: cover;
 height: 100vh;
 width: 100vw;
 position: fixed;
+ 
+
 `
 
 export const MainFormContainer = styled.div`
